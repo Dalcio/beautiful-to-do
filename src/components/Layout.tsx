@@ -6,22 +6,19 @@ type LayoutProps = {
   children: NextPage | JSX.Element;
 };
 
-const useLayoutStyles = createStyles(({ colorScheme, colors, white, spacing }) => ({
-  container: {
-    width: '100%',
-    minHeight: '100vh',
-    background: colorScheme === 'dark' ? colors.blue[1] : white,
-  },
+const useLayoutStyles = createStyles(({ spacing }) => ({
   wrapper: {
     position: 'absolute',
-    inset: 0,
-    display: 'grid',
-    justifyItems: 'center',
+    top: 0,
+    right: 0,
+    left: 0,
+    display: 'flex',
+    justifyContent: 'center',
   },
   innerWrapper: {
     width: 'min(100%, 600px)',
-    paddingTop: `${4 * spacing.xl}px`,
-    paddingBottom: `${3 * spacing.xl}px`,
+    minHeight: '100vh',
+    padding: `${spacing.xl}px`,
   },
 }));
 
@@ -33,14 +30,13 @@ const Layout = ({ children }: LayoutProps) => {
   const { isMobile } = useDevice('max-xs');
 
   return (
-    <div className={classes.container}>
+    <div>
       {isMobile ? (
         <Image
           src={`/images/${colorScheme === 'dark' ? 'bg-mobile-dark.jpg' : 'bg-mobile-light.jpg'}`}
           alt="bg"
           width="100%"
           height={261}
-          //   height={346}
         />
       ) : (
         <Image
@@ -48,13 +44,10 @@ const Layout = ({ children }: LayoutProps) => {
           alt="bg"
           width="100%"
           height={261}
-          //   height={346}
         />
       )}
       <div className={classes.wrapper}>
-        <Stack className={classes.innerWrapper} px="lg">
-          {children}
-        </Stack>
+        <Stack className={classes.innerWrapper}>{children}</Stack>
       </div>
     </div>
   );

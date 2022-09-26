@@ -24,7 +24,10 @@ const theme: MantineThemeOverride = {
     gray: [
       'hsl(0, 0%, 98%)', // - Very Light Gray: (Light mode)
     ],
-    checkBackground: ['linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%))'],
+    checkBackground: [
+      'linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%))',
+      'linear-gradient(to right, hsl(280, 87%, 65%), hsl(192, 100%, 67%))',
+    ],
   },
   fontFamily: "'Josefin Sans', sans-serif",
   fontSizes: {

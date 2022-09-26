@@ -5,6 +5,7 @@ const useHeaderStyles = createStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginTop: `${2 * theme.spacing.xl}px`,
   },
   title: {
     letterSpacing: 8,

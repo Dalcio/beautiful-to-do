@@ -1,20 +1,24 @@
-export type TTask = {
+export type TFilterBy = 'all' | 'active' | 'complete';
+
+export type TTodo = {
   completed: boolean;
   name: string;
   id: string;
 };
 
 export type TStoreState = {
-  tasks: TTask[];
-  filteredTasks: TTask[];
+  todoList: TTodo[];
+  filteredTodoList: TTodo[];
   itemsLeft: number;
+  filterBy: TFilterBy;
 };
 
 export type TStoreActions = {
-  addTask: (task: Omit<TTask, 'id'>) => void;
-  deleteTask: (id: string) => void;
-  toggleTask: (id: string) => void;
+  addTodo: (todo: Omit<TTodo, 'id'>) => void;
+  deleteTodo: (id: string) => void;
+  toggleTodo: (id: string) => void;
   clearCompleted: () => void;
+  filterTodoListBy: (filterBy: TFilterBy) => void;
   //   moveTask: (task: TTask) => void;
 };
 

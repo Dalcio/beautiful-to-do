@@ -9,6 +9,6 @@ let store = combine<TStore, TStoreActions, any, any>(storeInit, storeActions);
 store = persist(store);
 store = devtools(store);
 
-const useStore = create<TStore>(store);
+const useTodoStore = create<TStore>(store);
 
-export default useStore;
+export default useTodoStore;

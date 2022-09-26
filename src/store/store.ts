@@ -3,45 +3,47 @@ import { StateCreator } from 'zustand';
 import { TStore, TStoreActions } from './store.types';
 
 export const storeInit: TStore = {
-  tasks: [],
-  filteredTasks: [],
+  todoList: [],
+  filteredTodoList: [],
   itemsLeft: 0,
+  filterBy: 'all',
   clearCompleted() {},
-  deleteTask() {},
-  addTask() {},
-  toggleTask() {},
+  deleteTodo() {},
+  addTodo() {},
+  toggleTodo() {},
+  filterTodoListBy() {},
 };
 
 export const storeActions: StateCreator<TStore, any, any, TStoreActions> = (set, get) => ({
   clearCompleted() {
-    const { tasks } = get();
+    const { todoList } = get();
 
-    const cleanedTasks = tasks.filter((task) => !task.completed);
+    const cleanedTasks = todoList.filter((task) => !task.completed);
 
-    // maybe add filter tasks
+    // maybe add filter todoList
 
     set({
-      tasks: cleanedTasks,
+      todoList: cleanedTasks,
       itemsLeft: cleanedTasks.length,
     });
   },
-  deleteTask(id) {
-    const { tasks } = get();
-    const tempTasks = tasks.filter((task) => task.id !== id);
+  deleteTodo(id) {
+    const { todoList } = get();
+    const tempTasks = todoList.filter((task) => task.id !== id);
 
     const itemsLeft = tempTasks.filter((task) => !task.completed).length;
 
     set({
-      tasks: tempTasks,
+      todoList: tempTasks,
       itemsLeft,
     });
   },
-  addTask(task) {
+  addTodo(task) {
     const id = uuid();
 
     set((draft) => ({
-      tasks: [
-        ...draft.tasks,
+      todoList: [
+        ...draft.todoList,
         {
           ...task,
           id,
@@ -49,9 +51,9 @@ export const storeActions: StateCreator<TStore, any, any, TStoreActions> = (set,
       ],
     }));
   },
-  toggleTask(id) {
-    const { tasks } = get();
-    const tempTasks = [...tasks];
+  toggleTodo(id) {
+    const { todoList } = get();
+    const tempTasks = [...todoList];
     const idx = tempTasks.findIndex((task) => task.id === id);
 
     tempTasks[idx].completed = !tempTasks[idx].completed;
@@ -59,8 +61,21 @@ export const storeActions: StateCreator<TStore, any, any, TStoreActions> = (set,
     const itemsLeft = tempTasks.filter((task) => !task.completed).length;
 
     set({
-      tasks: tempTasks,
+      todoList: tempTasks,
       itemsLeft,
+    });
+  },
+  filterTodoListBy(filterBy) {
+    const { todoList } = get();
+
+    const filteredTodoList =
+      filterBy === 'all'
+        ? []
+        : todoList.filter((todo) => (filterBy === 'active' ? !todo.completed : todo.completed));
+
+    set({
+      filteredTodoList,
+      filterBy,
     });
   },
 });
