@@ -2,40 +2,34 @@ import { MantineThemeOverride } from '@mantine/core';
 
 const theme: MantineThemeOverride = {
   colors: {
-    cyan: ['hsl(180, 66%, 49%)'],
-    veryDarkBlue: ['hsl(255, 11%, 22%)'],
-    gray: ['hsl(0, 0%, 75%)', 'hsl(230, 25%, 95%)'],
-    red: ['hsl(0, 87%, 67%)'],
-
-    // (Dark, Grayish, Very Dark) Violet
-    violet: ['hsl(257, 27%, 26%)', 'hsl(257, 7%, 63%)', 'hsl(260, 8%, 14%)'],
-
     //     ### Primary
-
-    // - Bright Blue: hsl(220, 98%, 61%)
-    // - Check Background: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%)
-
-    // ### Neutral
-
-    // ### Light Theme
-
-    // - Very Light Gray: hsl(0, 0%, 98%)
-    // - Very Light Grayish Blue: hsl(236, 33%, 92%)
-    // - Light Grayish Blue: hsl(233, 11%, 84%)
-    // - Dark Grayish Blue: hsl(236, 9%, 61%)
-    // - Very Dark Grayish Blue: hsl(235, 19%, 35%)
-
-    // ### Dark Theme
-
-    // - Very Dark Blue: hsl(235, 21%, 11%)
-    // - Very Dark Desaturated Blue: hsl(235, 24%, 19%)
-    // - Light Grayish Blue: hsl(234, 39%, 85%)
-    // - Light Grayish Blue (hover): hsl(236, 33%, 92%)
-    // - Dark Grayish Blue: hsl(234, 11%, 52%)
-    // - Very Dark Grayish Blue: hsl(233, 14%, 35%)
-    // - Very Dark Grayish Blue: hsl(237, 14%, 26%)
+    blue: [
+      'hsl(220, 98%, 61%)', // - Bright Blue:
+      'hsl(235, 21%, 11%)', // - Very Dark Blue:
+      'hsl(235, 24%, 19%)', // - Very Dark Desaturated Blue:
+    ],
+    lightGrayishBlue: [
+      'hsl(236, 33%, 92%)', // - Very Light Grayish Blue: (Light mode)
+      'hsl(233, 11%, 84%)', // - Light Grayish Blue: (Light mode)
+      'hsl(234, 39%, 85%)', // - Light Grayish Blue: (Dark mode)
+      'hsl(236, 33%, 92%)', // - Light Grayish Blue (hover):(Dark mode)
+    ],
+    darkGrayishBlue: [
+      'hsl(236, 9%, 61%)', // - Dark Grayish Blue: (Light mode)
+      'hsl(235, 19%, 35%)', // - Very Dark Grayish Blue: (Light mode)
+      'hsl(234, 11%, 52%)', // - Dark Grayish Blue:  (Dark mode)
+      'hsl(233, 14%, 35%)', // - Very Dark Grayish Blue:  (Dark mode)
+      'hsl(237, 14%, 26%)', // - Very Dark Grayish Blue:  (Dark mode)
+    ],
+    gray: [
+      'hsl(0, 0%, 98%)', // - Very Light Gray: (Light mode)
+    ],
+    checkBackground: ['linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%))'],
   },
-  fontFamily: "'Nunito Sans', sans-serif",
+  fontFamily: "'Josefin Sans', sans-serif",
+  fontSizes: {
+    md: 18,
+  },
 };
 
 export default theme;

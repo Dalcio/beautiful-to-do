@@ -11,7 +11,6 @@ const GlobalStyles = () => (
 
       body: {
         ...fn.fontStyles(),
-        fontSize: '18px',
       },
     })}
   />
