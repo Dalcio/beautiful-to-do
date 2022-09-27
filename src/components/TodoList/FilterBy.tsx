@@ -3,16 +3,26 @@ import React from 'react';
 import useTodoStore from 'store';
 import { Row } from 'theme/restyled';
 
-const useFilterByStyles = createStyles(({ colors, colorScheme, radius, white }) => ({
+const useFilterByStyles = createStyles(({ colors, colorScheme, radius, white, fn }) => ({
   container: {
+    [fn.smallerThan('md')]: {
+      gridColumn: '1 / -1',
+      gridRow: '2 / 3',
+    },
+
     borderRadius: `${radius.md}px`,
     background: colorScheme === 'dark' ? colors.blue[2] : white,
+    display: 'flex',
+    justifyContent: 'center',
   },
   active: {
-    color: colors.blue[0],
+    color: `${colors.blue[0]}!important`,
+    cursor: 'default',
   },
   text: {
-    color: colors.darkGrayishBlue[0],
+    '&:hover': {
+      color: colorScheme === 'dark' ? white : colors.darkGrayishBlue[1],
+    },
   },
 }));
 

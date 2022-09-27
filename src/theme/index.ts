@@ -2,7 +2,6 @@ import { MantineThemeOverride } from '@mantine/core';
 
 const theme: MantineThemeOverride = {
   colors: {
-    //     ### Primary
     blue: [
       'hsl(220, 98%, 61%)', // - Bright Blue:
       'hsl(235, 21%, 11%)', // - Very Dark Blue:
@@ -27,6 +26,8 @@ const theme: MantineThemeOverride = {
     checkBackground: [
       'linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%))',
       'linear-gradient(to right, hsl(280, 87%, 65%), hsl(192, 100%, 67%))',
+      'linear-gradient(to bottom, hsl(192, 100%, 67%), hsl(280, 87%, 65%))',
+      'linear-gradient(to bottom, hsl(280, 87%, 65%), hsl(192, 100%, 67%))',
     ],
   },
   fontFamily: "'Josefin Sans', sans-serif",

@@ -16,8 +16,8 @@ const useLayoutStyles = createStyles(({ spacing }) => ({
     justifyContent: 'center',
   },
   innerWrapper: {
-    width: 'min(100%, 600px)',
-    minHeight: '100vh',
+    width: 'min(100%, 738px)',
+    height: '100vh',
     padding: `${spacing.xl}px`,
   },
 }));

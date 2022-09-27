@@ -5,6 +5,7 @@ const HomePage = () => (
     <Header />
     <AddTodo />
     <TodoList />
+    {/* <FilterBy /> */}
     <Footer />
   </>
 );
