@@ -1,8 +1,10 @@
 import { Button, createStyles, Stack, Text } from '@mantine/core';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import useTodoStore from 'store';
 import { Row } from 'theme/restyled';
 import FilterBy from './FilterBy';
 import TodoItem from './TodoItem';
+import { useDragAndDrop } from './TodoList.hooks';
 
 const useTodoListStyles = createStyles(({ colors, colorScheme, white, radius, fn }) => ({
   container: {
@@ -66,15 +68,31 @@ const TodoList = () => {
   const itemsLeft = useTodoStore((s) => s.itemsLeft);
   const clearCompleted = useTodoStore((s) => s.clearCompleted);
   const filterBy = useTodoStore((s) => s.filterBy);
+  const { onDragEnd } = useDragAndDrop();
+
+  const list = filterBy !== 'all' && filteredTodoList !== undefined ? filteredTodoList : todoList;
 
   return (
     <Stack className={classes.container} mb="md">
       <Stack className={classes.todoListContainer}>
-        <div className={classes.todoListWrapper}>
-          {filterBy !== 'all' && filteredTodoList && filteredTodoList.length >= 0
-            ? filteredTodoList.map((todo) => <TodoItem {...todo} key={todo.id} />)
-            : todoList.map((todo) => <TodoItem {...todo} key={todo.id} />)}
-        </div>
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable droppableId="todo-list" type="TODO">
+            {(providedDroppable) => (
+              <div
+                className={classes.todoListWrapper}
+                {...providedDroppable.droppableProps}
+                ref={providedDroppable.innerRef}
+              >
+                <>
+                  {list.map((todo, index) => (
+                    <TodoItem {...todo} key={todo.id} index={index} />
+                  ))}
+                </>
+                {providedDroppable.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
         <Row
           className={classes.todoListFooter}
           align="center"

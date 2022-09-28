@@ -19,7 +19,8 @@ export type TStoreActions = {
   toggleTodo: (id: string) => void;
   clearCompleted: () => void;
   filterTodoListBy: (filterBy: TFilterBy) => void;
-  //   moveTask: (task: TTask) => void;
+  // moveTodo: () => void;
+  reorderTodoList: (sourceIndex: number, destinationIndex: number) => void;
 };
 
 export type TStore = TStoreState & TStoreActions;

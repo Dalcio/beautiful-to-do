@@ -12,6 +12,7 @@ export const storeInit: TStore = {
   addTodo() {},
   toggleTodo() {},
   filterTodoListBy() {},
+  reorderTodoList() {},
 };
 
 export const storeActions: StateCreator<TStore, any, any, TStoreActions> = (set, get) => ({
@@ -25,7 +26,9 @@ export const storeActions: StateCreator<TStore, any, any, TStoreActions> = (set,
       itemsLeft: cleanedTasks.length,
     });
 
-    filterTodoListBy(filterBy);
+    if (filterBy !== 'all') {
+      filterTodoListBy(filterBy);
+    }
   },
   deleteTodo(id) {
     const { todoList } = get();
@@ -55,7 +58,9 @@ export const storeActions: StateCreator<TStore, any, any, TStoreActions> = (set,
       itemsLeft: itemsLeft + (task.completed ? 0 : 1),
     }));
 
-    filterTodoListBy(filterBy);
+    if (filterBy !== 'all') {
+      filterTodoListBy(filterBy);
+    }
   },
   toggleTodo(id) {
     const { todoList, filterBy, filterTodoListBy } = get();
@@ -71,7 +76,9 @@ export const storeActions: StateCreator<TStore, any, any, TStoreActions> = (set,
       itemsLeft,
     });
 
-    filterTodoListBy(filterBy);
+    if (filterBy !== 'all') {
+      filterTodoListBy(filterBy);
+    }
   },
   filterTodoListBy(filterBy) {
     const { todoList } = get();
@@ -85,5 +92,20 @@ export const storeActions: StateCreator<TStore, any, any, TStoreActions> = (set,
       filteredTodoList,
       filterBy,
     });
+  },
+  reorderTodoList(sourceIndex, destinationIndex) {
+    const { todoList, filterTodoListBy, filterBy } = get();
+
+    const tempTodoList = [...todoList];
+
+    const [todo] = tempTodoList.splice(sourceIndex, 1);
+
+    tempTodoList.splice(destinationIndex, 0, todo);
+
+    set({ todoList: tempTodoList });
+
+    if (filterBy !== 'all') {
+      filterTodoListBy(filterBy);
+    }
   },
 });
