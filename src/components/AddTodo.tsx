@@ -67,6 +67,7 @@ const AddTodo = () => {
         variant="unstyled"
         onChange={handlerName}
         placeholder="Create a new todo..."
+        spellCheck
       />
     </form>
   );
